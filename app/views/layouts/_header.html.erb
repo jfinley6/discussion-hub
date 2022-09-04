@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 pt-2 d-flex pb-3 mb-2 border-bottom justify-content-around">
+            <p class="h2 mb-0 d-flex align-items-center">Reddit Clone</p>
+
+            <div class="float-right">
+                <% if account_signed_in? %>
+                    <%= link_to "Sign Out" , destroy_account_session_path, method: :delete, class: "btn btn-primary" %>
+                <% else %>
+                    <%= link_to "Log In" , new_account_session_path, class: "btn btn-outline-primary" %>
+                    <%= link_to "Sign Up" , new_account_registration_path, class: "btn btn-primary" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
