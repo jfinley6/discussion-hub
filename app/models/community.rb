@@ -1,4 +1,7 @@
 class Community < ActiveRecord::Base
+   # extend FriendlyId
+   # friendly_id :url, use: [:slugged, :finders] 
    belongs_to :account
-   validates_presence_of :url, :name, :bio
+   has_many :posts
+   validates_presence_of :url, :name, :rules
 end

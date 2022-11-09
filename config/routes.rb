@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   
   root to: 'public#index'
 
-  resources :communities
+  resources :communities do
+    resources :posts
+  end
+  resources :public
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

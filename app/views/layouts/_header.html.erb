@@ -1,16 +1,25 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12 pt-2 d-flex pb-3 mb-2 border-bottom justify-content-around">
-            <p class="h2 mb-0 d-flex align-items-center">Reddit Clone</p>
-
-            <div class="float-right">
-                <% if account_signed_in? %>
-                    <%= link_to "Sign Out" , destroy_account_session_path, method: :delete, class: "btn btn-primary" %>
-                <% else %>
-                    <%= link_to "Log In" , new_account_session_path, class: "btn btn-outline-primary" %>
-                    <%= link_to "Sign Up" , new_account_registration_path, class: "btn btn-primary" %>
-                <% end %>
+  <div class="row">
+    <div class="col-12 pt-3 d-flex pb-3 mb-1 border-bottom justify-content-between">
+      <p role="button" class="h2 mb-0 d-flex align-items-center"><%= link_to "Reddit Clone", root_path, class: "text-dark text-decoration-none" %></p>
+      <div class="float-right">
+        <% if account_signed_in? %>
+          <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown link
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <%= link_to "Sign Out" , destroy_account_session_path, method: :delete, class: "btn btn-primary" %>
             </div>
-        </div>
+          </div>
+        <% else %>
+          <%= link_to "Log In" , new_account_session_path, class: "btn btn-outline-primary" %>
+          <%= link_to "Sign Up" , new_account_registration_path, class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
+  </div>
 </div>
