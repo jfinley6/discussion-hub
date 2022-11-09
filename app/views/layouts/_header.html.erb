@@ -1,19 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 pt-3 d-flex pb-3 mb-1 border-bottom justify-content-between">
-      <p role="button" class="h2 mb-0 d-flex align-items-center"><%= link_to "Reddit Clone", root_path, class: "text-dark text-decoration-none" %></p>
-      <div class="float-right">
+    <div class="col-12 d-flex border-bottom justify-content-between">
+      <p role="button" class="h3 mb-2 mt-2 d-flex align-items-center"><%= link_to "Reddit Clone", root_path, class: "text-decoration-none" %></p>
+      <div class="float-right d-flex align-items-center">
         <% if account_signed_in? %>
-          <div class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown link
+          <div class="dropdown">
+            <a href="#" class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_account.full_name %>
             </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <%= link_to "Sign Out" , destroy_account_session_path, method: :delete, class: "btn btn-primary" %>
-            </div>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <%= link_to "Profile" , profile_path(current_account.username), class: "dropdown-item" %>
+              <%= link_to "Settings" , edit_account_registration_path , class: "dropdown-item" %>
+              <%= link_to "Sign Out" , destroy_account_session_path, method: :delete, class: "dropdown-item" %>
+            </ul>
           </div>
         <% else %>
           <%= link_to "Log In" , new_account_session_path, class: "btn btn-outline-primary" %>

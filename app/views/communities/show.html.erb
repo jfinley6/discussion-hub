@@ -1,16 +1,12 @@
 <%= link_to "Create New Post", new_community_post_path(@community), class: "btn btn-primary float-end" %>
-
-<%= @community.name %>
-
-<% @posts.each do |post| %>
-  <h4>
-    <%= link_to post.title, community_post_path(@community, post) %>
-  </h4>
-  <p>
-    <%= truncate post.body, length: 200 %>
-  </p>
-<% end %>
-
-<small>
-  <%= simple_format @community.rules %>
-</small>
+<h3><%= @community.name %></h3>
+<div class="row">
+  <div class="col-sm-8">
+    <%= render partial: "posts/lists", locals: { posts: @posts } %>
+  </div>
+  <div class="col-sm-4">
+    <small>
+      <%= simple_format @community.rules %>
+    </small>
+  </div>
+</div>

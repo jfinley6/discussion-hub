@@ -1,16 +1,11 @@
 Rails.application.routes.draw do
   devise_for :accounts
+  get "/u/:username", to: 'public#profile', as: :profile
   
-  root to: 'public#index'
-
   resources :communities do
     resources :posts
   end
-  resources :public
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-
+  
+  root to: 'public#index'
   
 end

@@ -1,4 +1,4 @@
-<div class="container pt-2">
+  <% unless account_signed_in? %>
   <div class="row">
     <div class="col">
       <p class="h4">Trending Today</p>
@@ -18,23 +18,15 @@
       Trending 4
     </div>
   </div>
-  <div class="row mt-3">
+  <% end %>
+  <div class="row">
     <div class="col">
-      <p class="h4">Popular Posts</p>
+      <p class="h4 pb-1">Popular Posts</p>
     </div>
   </div>
   <div class="row">
     <div class="col-8">
-      <% @posts.each do |post| %>
-        <div class="card p-3">
-          <h4>
-            <%= link_to post.title, community_post_path(post.community_id, post) %>
-          </h4>
-          <p>
-            <%= truncate post.body, length: 200 %>
-          </p>
-        </div>
-      <% end %>
+      <%= render partial: "posts/lists", locals: { posts: @posts } %>
     </div>
     <div class="col-4">
       <p class="h5">Up and Coming Communities</p>
@@ -48,4 +40,3 @@
       <%= link_to "View all", communities_path, class: "btn btn-primary mt-2"%>
     </div>
   </div>
-</div>
