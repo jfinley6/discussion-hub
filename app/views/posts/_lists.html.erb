@@ -4,7 +4,7 @@
       <%= link_to post.title, community_post_path(post.community_id, post), class: "text-decoration-none" %>
     </h4>
       <p>
-        <small><%= link_to post.community.name, community_path(post.community) %> Posted by <%= link_to post.account.full_name, profile_path(post.account.username) %> <%= time_ago_in_words post.created_at %> ago.</small>
+        <small>Posted by <%= link_to post.account.full_name, profile_path(post.account.username) %> in <%= link_to post.community.name.capitalize, post.community %>  <%= time_ago_in_words post.created_at %> ago.</small>
       </p>
     <p>
       <%= truncate post.body, length: 200 %>

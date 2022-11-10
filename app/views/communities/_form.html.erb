@@ -1,19 +1,23 @@
 <div class="row">
   <div class="col-sm-6">
     <%= form_for @community do |form| %>
-      <div class="form-group">
+      <div class="form-label">
         <%= label_tag :name %>
         <%= form.text_field :name, class: "form-control" %>
       </div>
-      <div class="form-group">
+      <div class="form-label">
         <%= label_tag :url, "URL" %>
         <%= form.text_field :url, class: "form-control" %>
       </div>
-      <div class="form-group">
+      <div class="form-label">
         <%= label_tag :rules %>
         <%= form.text_area :rules, class: "form-control" %>
       </div>
-      <%= form.submit "Submit", class: "btn btn-primary" %>
+      <div class="form-label">
+        <%= label_tag :summary %>
+        <%= form.text_area :summary, class: "form-control" %>
+      </div>
+      <%= form.submit "Submit", class: "btn btn-primary mb-3" %>
     <% end %>
   </div>
 </div>

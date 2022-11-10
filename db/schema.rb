@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_08_002121) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_09_222231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_002121) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.text "summary"
     t.index ["account_id"], name: "index_communities_on_account_id"
     t.index ["slug"], name: "index_communities_on_slug", unique: true
   end
@@ -68,6 +69,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_002121) do
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "community_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_subscriptions_on_account_id"
+    t.index ["community_id"], name: "index_subscriptions_on_community_id"
   end
 
 end

@@ -33,7 +33,9 @@
       <div class="card">
         <ul class="list-group list-group-flush">
           <% @communities.each do |community| %>
-            <li class="list-group-item"><%= link_to community.name, community, class: "btn btn-outline-success" %></li>
+            <span><%= link_to community.name.capitalize, community, class: "text-decoration-none h6 m-3" %>
+              <%= pluralize community.subscribers.count, "member" %>
+            </span>
           <% end %>
         </ul>
       </div>

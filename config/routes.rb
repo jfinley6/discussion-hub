@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   resources :communities do
     resources :posts
   end
-  
+
+  resources :subscriptions, except: :destroy
+  delete '/subscriptions/:community_id', to: 'subscriptions#destroy'
+
   root to: 'public#index'
   
 end

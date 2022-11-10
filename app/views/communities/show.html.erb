@@ -1,11 +1,28 @@
-<%= link_to "Create New Post", new_community_post_path(@community), class: "btn btn-primary float-end" %>
-<h3><%= @community.name %></h3>
+<div class="row mb-3">
+  <div class="col-sm-8">
+    <h3><%= @community.name %></h3>
+  </div>
+  <div class="col-sm-4">
+    <% if @is_subscribed %>
+      <%= button_to "Leave Community", subscription_path(@community.id), method: :delete, class: "btn btn-outline-danger float-end mx-2" %>
+      <%= link_to "Create New Post", new_community_post_path(@community.id), method: :post, class: "btn btn-primary float-end" %>
+    <% else %>
+      <%= render partial: "communities/subscribe", locals: {community_id: @community.id} %>
+    <% end %>
+  </div>
+</div>
 <div class="row">
   <div class="col-sm-8">
     <%= render partial: "posts/lists", locals: { posts: @posts } %>
   </div>
   <div class="col-sm-4">
+    <div class="card p-3">
+      <p class="mb-2 h5">About</p>
+      <p ><%= @community.summary %></p>
+      <p><%= pluralize @subscribers_count, "member" %> </p>
+    </div>
     <small>
+      <h4>Rules</h4>
       <%= simple_format @community.rules %>
     </small>
   </div>
