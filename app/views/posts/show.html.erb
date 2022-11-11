@@ -1,4 +1,18 @@
-<p><%= link_to "/r/#{@post.community.name}", @post.community %></p>
+<p><%= link_to "← #{@post.community.name.capitalize}", @post.community, class: "text-decoration-none" %></p>
+
 <h2><%= @post.title %></h2>
 
 <%= simple_format @post.body %>
+
+<div id="post-comments">
+    <%= render partial: "posts/comments", locals: {comments: @post.comments}%>
+</div>
+
+<h5>Leave a comment</h5>
+<%= form_for @comment, remote: true do |f| %>
+  <%= f.hidden_field :post_id, value: @post.id  %>
+  <div class="form-label">
+    <%= f.text_area :message, placeholder: "Type comment", class: "form-control"  %>
+  </div>
+  <%= f.submit "Submit Comment", class: "btn btn-success mb-3" %>
+<% end%>

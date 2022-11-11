@@ -1,0 +1,11 @@
+<% comments.each do |comment| %>
+  <div class="card p-3 mb-2">
+    <div>
+      <%= link_to comment.account.full_name, profile_path(comment.account.username) %>
+      <% if comment.account_id === current_account.id %>
+        <span>delete</span>
+      <% end%>
+    </div>
+    <%= simple_format comment.message %>
+  </div>
+<% end %>

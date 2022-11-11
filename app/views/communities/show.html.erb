@@ -4,7 +4,6 @@
   </div>
   <div class="col-sm-4">
     <% if @is_subscribed %>
-      <%= button_to "Leave Community", subscription_path(@community.id), method: :delete, class: "btn btn-outline-danger float-end mx-2" %>
       <%= link_to "Create New Post", new_community_post_path(@community.id), method: :post, class: "btn btn-primary float-end" %>
     <% else %>
       <%= render partial: "communities/subscribe", locals: {community_id: @community.id} %>
@@ -17,9 +16,12 @@
   </div>
   <div class="col-sm-4">
     <div class="card p-3">
-      <p class="mb-2 h5">About</p>
-      <p ><%= @community.summary %></p>
-      <p><%= pluralize @subscribers_count, "member" %> </p>
+      <div class="mb-2 h5">About</div>
+      <div ><%= @community.summary %></div>
+      <div class="mb-2"><%= pluralize @subscribers_count, "member" %> </div>
+      <% if @is_subscribed %>
+        <div><%= button_to "Leave Community", subscription_path(@community.id), method: :delete, class: "btn btn-sm btn-outline-danger" %></div>
+      <% end %>
     </div>
     <small>
       <h4>Rules</h4>

@@ -7,7 +7,7 @@ class PublicController < ApplicationController
 
     def profile
         @profile = Account.find_by_username params[:username]
-        @posts = @profile.posts.order(id: :desc)
+        @posts = @profile.posts.order(id: :desc).limit(10)
         @subscriptions = Subscription.where(account_id: current_account.id)
     end
 

@@ -18,27 +18,29 @@
       Trending 4
     </div>
   </div>
-  <% end %>
-  <div class="row">
-    <div class="col">
-      <p class="h4 pb-1">Popular Posts</p>
-    </div>
+<% end %>
+<div class="row">
+  <div class="col">
+    <p class="h4 pb-1">Popular Posts</p>
   </div>
-  <div class="row">
-    <div class="col-8">
-      <%= render partial: "posts/lists", locals: { posts: @posts } %>
-    </div>
-    <div class="col-4">
-      <p class="h5">Up and Coming Communities</p>
-      <div class="card">
-        <ul class="list-group list-group-flush">
-          <% @communities.each do |community| %>
-            <span><%= link_to community.name.capitalize, community, class: "text-decoration-none h6 m-3" %>
-              <%= pluralize community.subscribers.count, "member" %>
-            </span>
-          <% end %>
-        </ul>
-      </div>
-      <%= link_to "View all", communities_path, class: "btn btn-primary mt-2"%>
-    </div>
+</div>
+<div class="row">
+  <div class="col-7">
+    <%= render partial: "posts/lists", locals: { posts: @posts } %>
   </div>
+  <div class="col-5">
+    <p class="h5">New Communities</p>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <% @communities.each do |community| %>
+          <div class="card">
+            <div><%= link_to community.name.capitalize, community, class: "text-decoration-none h6 m-3" %>
+            </div>
+            <div class="mx-3"><%= pluralize community.subscribers.count, "member" %></div>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+    <%= link_to "View all", communities_path, class: "btn btn-primary mt-2"%>
+  </div>
+</div>

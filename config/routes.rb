@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :subscriptions, except: :destroy
   delete '/subscriptions/:community_id', to: 'subscriptions#destroy'
 
+  resources :comments, only: [:create]
+
+
   root to: 'public#index'
   
 end
