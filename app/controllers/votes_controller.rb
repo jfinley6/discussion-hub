@@ -1,4 +1,4 @@
-class SubscriptionsController < ApplicationController
+class VotesController < ApplicationController
 
     def create
         is_upvote = params[:upvote]
