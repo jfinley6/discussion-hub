@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "application" %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
   <body>
     <%= render partial: "layouts/header" %>
