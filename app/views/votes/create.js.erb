@@ -1,14 +1,22 @@
 $("#vote-actions-<%= @post.id %> .score").text("<%= @post.score %>")
-
 $("#vote-actions-<%= @post.id %> .downvote, #vote-actions-<%= @post.id %> .upvote").removeClass("active");
 
-<% if @new_vote %>
-    <% if @is_upvote === "true" %>
-        $("#vote-actions-<%= @post.id %>").find(".upvote").addClass("active");
-    <% else %>
-        $("#vote-actions-<%= @post.id %>").find(".downvote").addClass("active");
-    <% end %>
+<% if @previous_vote === true %>
+  <% if @is_upvote === "true" %>
+    $("#vote-actions-<%= @post.id %>").find(".upvote").removeClass("active");
+  <% else %>
+    $("#vote-actions-<%= @post.id %>").find(".upvote").removeClass("active");
+    $("#vote-actions-<%= @post.id %>").find(".downvote").addClass("active");
+  <% end %>
+<% elsif @previous_vote === false %>
+  <% if @is_upvote === "true" %>
+    $("#vote-actions-<%= @post.id %>").find(".downvote").removeClass("active");
+    $("#vote-actions-<%= @post.id %>").find(".upvote").addClass("active");
+  <% end %>
+<% else %>
+  <% if @is_upvote === "true" %>
+    $("#vote-actions-<%= @post.id %>").find(".upvote").addClass("active");
+  <% else %>
+    $("#vote-actions-<%= @post.id %>").find(".downvote").addClass("active");
+  <% end %>
 <% end %>
-
-
-

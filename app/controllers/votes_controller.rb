@@ -15,9 +15,21 @@ class VotesController < ApplicationController
         respond_to do |format|
             format.js {
                 if existing_vote.size > 0
-                    existing_vote.first.upvote ? @user_post.increment!(:karma, by = -1) : @user_post.increment!(:karma, by = 1)
-                    existing_vote.first.destroy
+                    @previous_vote = existing_vote.first.upvote
+                    if existing_vote.first.upvote == vote.upvote
+                        existing_vote.first.upvote ? @user_post.increment!(:karma, by = -1) : @user_post.increment!(:karma, by = 1)
+                        existing_vote.first.destroy
+                    else
+                        existing_vote.first.upvote ? @user_post.increment!(:karma, by = -2) : @user_post.increment!(:karma, by = 2)
+                        existing_vote.first.destroy
+                        if vote.save
+                            @success = true
+                        else
+                            @success = false
+                        end
+                    end
                 else
+                    @previous_vote = nil
                     vote.upvote ? @user_post.increment!(:karma, by = 1) : @user_post.increment!(:karma, by = -1)
                     if vote.save
                         @success = true
@@ -26,6 +38,7 @@ class VotesController < ApplicationController
                     end
                 end
 
+                @vote = vote.upvote
                 @post = Post.find(post_id)
                 @is_upvote = params[:upvote]
     
