@@ -11,7 +11,6 @@ class Vote < ApplicationRecord
 
     def increment_vote
         field = self.upvote ? :upvotes : :downvotes
-        puts field
         Post.find(self.post_id).increment!(field)
     end
 
