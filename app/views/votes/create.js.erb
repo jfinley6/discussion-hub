@@ -9,3 +9,9 @@ $("#vote-actions-<%= @post.id %> .downvote, #vote-actions-<%= @post.id %> .upvot
         $("#vote-actions-<%= @post.id %>").find(".downvote").addClass("active");
     <% end %>
 <% end %>
+
+<% if account_signed_in? %>
+    $("#karma, #karma-header").text("<%= @karma %>")
+    $("#karma, #karma-header").css('color', '<%= changeKarmaColor @karma %>')
+<% end %>
+
