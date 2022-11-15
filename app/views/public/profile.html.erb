@@ -13,6 +13,7 @@
     </div>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, sit dolorem consequuntur rerum nesciunt laborum? Quae dolore ullam, quisquam, fugit veniam laudantium, tempore totam placeat inventore eligendi soluta deleniti nostrum.</p>
     <p>Cake Day: <%= @profile.created_at.strftime("%d/%m/%Y") %></p>
+    <p>Karma: <span id="karma" style="color: <%= changeKarmaColor @karma %>"><%= @karma %></span></p>
     <h5>Community Subscriptions</h4>
     <% @subscriptions.each do |subscription| %>
       <li class="list-group-item px-3"><%= link_to "r/#{subscription.community.name}", subscription.community %></li>
