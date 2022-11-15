@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:create]
 
+  post '/posts/vote', to: 'votes#create' 
 
   root to: 'public#index'
   

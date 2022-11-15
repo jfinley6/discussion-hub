@@ -11,12 +11,13 @@ class Vote < ApplicationRecord
 
     def increment_vote
         field = self.upvote ? :upvotes : :downvotes
-        Post.find(self.post_id).increment(field)
+        puts field
+        Post.find(self.post_id).increment!(field)
     end
 
     def decrement_vote
         field = self.upvote ? :upvotes : :downvotes
-        Post.find(self.post_id).decrement(field)
+        Post.find(self.post_id).decrement!(field)
     end
 
 end

@@ -4,7 +4,7 @@
   </div>
   <div class="col-sm-4">
     <% if @is_subscribed %>
-      <%= link_to "Create New Post", new_community_post_path(@community.id), method: :post, class: "btn btn-primary float-end" %>
+      <%= link_to "Create New Post", new_community_post_path(@community.id), method: :get, class: "btn btn-primary float-end" %>
     <% else %>
       <%= render partial: "communities/subscribe", locals: {community_id: @community.id} %>
     <% end %>

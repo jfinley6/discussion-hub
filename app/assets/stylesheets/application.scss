@@ -7,3 +7,30 @@
 
 //         box-shadow: 0 8px 8px -4px lightblue;
 // }
+
+#up-arrow {
+    transform: scale(1.5);
+
+    &.active {
+            color: #ff0000;
+        }
+}
+
+#down-arrow {
+    transform: scale(1.5);
+
+    &.active {
+            color: #9494FF;;
+        }
+}
+
+#up-arrow:hover {
+    // transform: translateY(-5px);
+    color: #FF5700;
+    cursor: pointer;
+}
+
+#down-arrow:hover {
+    color: #9494FF;
+    cursor: pointer;
+}

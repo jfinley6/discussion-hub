@@ -9,9 +9,9 @@
 </div>
 
 <h5>Leave a comment</h5>
-<%= form_for @comment, remote: true, method: :post do |f| %>
+<%= form_for @comment, remote: true, method: :post, html: {id: "new_comment"} do |f| %>
   <%= f.hidden_field :post_id, value: @post.id  %>
-  <div class="form-label">
+  <div id="comment-form" class="form-label">
     <%= f.text_area :message, placeholder: "Type comment", class: "form-control"  %>
   </div>
   <%= f.submit "Submit Comment", class: "btn btn-success mb-3" %>

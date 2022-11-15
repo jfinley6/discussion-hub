@@ -4,6 +4,8 @@ class CommunitiesController < ApplicationController
 
     def index
         @communities = Community.all
+        @communities_count = Community.all.count
+
     end
 
     def show 

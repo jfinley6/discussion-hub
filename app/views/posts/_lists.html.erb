@@ -1,13 +1,27 @@
 <% @posts.each do |post| %>
   <div class="card p-3 mb-3">
-    <h4 class="mb-0">
-      <%= link_to post.title, community_post_path(post.community_id, post), class: "text-decoration-none" %>
-    </h4>
-      <p>
-        <small>Posted by <%= link_to post.account.full_name, profile_path(post.account.username) %> in <%= link_to post.community.name.capitalize, post.community %>  <%= time_ago_in_words post.created_at %> ago.</small>
-      </p>
-    <p>
-      <%= truncate post.body, length: 200 %>
-    </p>
+    <div class="row">
+      <div class="mt-2 col-1">
+        <div id="vote-actions-<%= post.id %>" data-id="<%= post.id %>" class="d-flex flex-column align-items-center vote">
+          <span id="up-arrow" class="fa fa-arrow-up mb-1 upvote <%= is_upvoted post %>"></span>
+          <span class="text-center score"><%= post.score %></span>
+          <span id="down-arrow" class="fa fa-arrow-down mt-1 downvote <%= is_downvoted post %>"></span>
+        </div>
+      </div>
+      <div class="col-11">
+        <h4 class="mb-0">
+          <%= link_to post.title, community_post_path(post.community_id, post), class: "text-decoration-none" %>
+        </h4>
+        <p class="mb-0">
+          <small>Posted by <%= link_to post.account.full_name, profile_path(post.account.username) %> in <%= link_to post.community.name.capitalize, post.community %>  <%= time_ago_in_words post.created_at %> ago.</small>
+        </p>
+        <p>
+          <small><%= pluralize post.total_comments, "comment" %> </small>
+        </p>
+        <p class="mb-0">
+          <%= truncate post.body, length: 200 %>
+        </p>
+      </div>
+    </div>
   </div>
 <% end %>
