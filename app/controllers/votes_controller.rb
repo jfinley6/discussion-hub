@@ -7,7 +7,7 @@ class VotesController < ApplicationController
         vote.post_id = params[:post_id]
         vote.upvote = params[:upvote]
         vote.account_id = current_account.id
-        @user = current_account
+        @user_karma = Post.find(vote.post_id).account
 
         existing_vote = Vote.where(account_id: current_account.id, post_id: post_id)
         @new_vote = existing_vote.size < 1
@@ -15,17 +15,17 @@ class VotesController < ApplicationController
         respond_to do |format|
             format.js {
                 if existing_vote.size > 0
-                    existing_vote.first.upvote ? @user.increment!(:karma, by = -1) : @user.increment!(:karma, by = 1)
+                    existing_vote.first.upvote ? @user_karma.increment!(:karma, by = -1) : @user_karma.increment!(:karma, by = 1)
                     existing_vote.first.destroy
                 else
-                    vote.upvote ? @user.increment!(:karma, by = 1) : @user.increment!(:karma, by = -1)
+                    vote.upvote ? @user_karma.increment!(:karma, by = 1) : @user_karma.increment!(:karma, by = -1)
                     if vote.save
                         @success = true
                     else
                         @success = false
                     end
                 end
-                @karma = @user.karma
+                @karma = @user_karma.karma
                 @post = Post.find(post_id)
                 @is_upvote = params[:upvote]
     
