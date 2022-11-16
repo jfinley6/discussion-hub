@@ -18,6 +18,22 @@ class CommentsController < ApplicationController
         end
     end
 
+    def destroy
+
+        @comment = Comment.find(params[:id])
+        @post = @comment.post
+        @comment.delete
+
+        if @comment.destroyed?
+            @post.decrement!(:total_comments, 1)
+            respond_to do |format|
+                format.js {
+                    render "comments/delete"
+                }
+            end
+        end
+    end
+
     private 
 
     def comment_params
