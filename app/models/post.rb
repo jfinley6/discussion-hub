@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
     # friendly_id :community_id, use: :slugged
     belongs_to :account
     belongs_to :community
-    has_many :comments, depended: :destroy
+    has_many :comments, dependent: :destroy
     has_many :votes, dependent: :destroy
     validates_presence_of :title, :body, :account_id, :community_id
 
