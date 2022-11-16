@@ -3,11 +3,11 @@ class Account < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :posts
-  has_many :subscriptions
+  has_many :posts, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
   has_many :communities, through: :subscriptions
-  has_many :comments
-  has_many :votes
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   validates :email, :username, presence: true
   validates :email, uniqueness: true
