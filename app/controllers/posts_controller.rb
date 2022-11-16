@@ -22,6 +22,12 @@ class PostsController < ApplicationController
         @post.community_id = params[:community_id]
         @community = Community.find(params[:community_id])
         if @post.save
+            @vote = Vote.new
+            @vote.account_id = current_account.id
+            @vote.post_id = @post.id
+            @vote.upvote = true
+            @vote.save
+            @vote.account.increment!(:karma, 1)
             redirect_to community_path(@community)
         else
             @community = Community.find(params[:community_id])
