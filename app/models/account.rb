@@ -9,7 +9,9 @@ class Account < ApplicationRecord
   has_many :comments
   has_many :votes
 
-  validates :email, :password, :password_confirmation, :username, presence: true
+  validates :email, :username, presence: true
+  validates :email, uniqueness: true
+  validates :username, uniqueness: true
 
   attr_writer :login
 
