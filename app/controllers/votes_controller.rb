@@ -9,7 +9,7 @@ class VotesController < ApplicationController
         vote.account_id = current_account.id
         @user_post = Post.find(params[:post_id]).account
 
-        existing_vote = Vote.where(account_id: @user_post.id, post_id: post_id)
+        existing_vote = Vote.where(account_id: current_account.id, post_id: post_id)
         @new_vote = existing_vote.size < 1
 
         respond_to do |format|
