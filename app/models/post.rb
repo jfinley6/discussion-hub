@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
     belongs_to :account
     belongs_to :community
     has_many :comments
+    has_many :votes, dependent: :destroy
     validates_presence_of :title, :body, :account_id, :community_id
 
     def score
