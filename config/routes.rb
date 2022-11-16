@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :subscriptions, except: :destroy
   delete '/subscriptions/:community_id', to: 'subscriptions#destroy'
 
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :destroy]
 
   post '/posts/vote', to: 'votes#create' 
 
