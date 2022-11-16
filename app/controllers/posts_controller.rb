@@ -35,6 +35,20 @@ class PostsController < ApplicationController
         end
     end
 
+    def destroy
+        @post = Post.find(params[:id])
+        @post.destroy
+
+        if @post.destroyed?
+            respond_to do |format|
+                format.js {
+                    render "posts/delete"
+                }
+            end
+        end
+
+    end
+
     private
 
     def set_post
