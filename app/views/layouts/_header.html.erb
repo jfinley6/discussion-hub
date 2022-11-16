@@ -6,7 +6,7 @@
         <% if account_signed_in? %>
           <div class="dropdown">
             <a href="#" class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= current_account.full_name %> • <span id="karma-header" style="color: <%= changeKarmaColor current_account.karma %>"><%= current_account.karma %></span>
+              <%= current_account.username %> • <span id="karma-header" style="color: <%= changeKarmaColor current_account.karma %>"><%= current_account.karma %></span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <%= link_to "Profile" , profile_path(current_account.username), class: "dropdown-item" %>
