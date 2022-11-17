@@ -18,16 +18,6 @@
   </div>
 
   <div class="form-label">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, class: "form-control" %>
-  </div>
-
-  <div class="form-label">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: "form-control" %>
-  </div>
-
-  <div class="form-label">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
     <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %> 
   </div>
@@ -38,7 +28,7 @@
   </div>
 
   <div class="form-label">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+    <%= f.label :current_password %> <i>(Please enter password to confirm changes)</i>
     <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
   </div>
 
