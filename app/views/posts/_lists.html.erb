@@ -8,7 +8,7 @@
           <span id="down-arrow" class="fa fa-arrow-down mt-1 downvote <%= is_downvoted post %>"></span>
         </div>
       </div>
-      <div class="col-8">
+      <div class="col-9">
         <h4 class="mb-0">
           <%= link_to post.title, community_post_path(post.community_id, post), class: "text-decoration-none" %>
         </h4>
@@ -22,12 +22,12 @@
           <%= truncate post.body, length: 200 %>
         </p>
       </div>
-      <div class="col-3">
+      <div class="col-2">
       <% if account_signed_in? %>
         <% if post.account_id === current_account.id %>
           <% if current_page?(profile_path(current_account.username)) %>
             
-            <div><%= button_to "Remove Post", community_post_path(post.community_id, post.id), remote: true, method: :delete, data: { confirm: 'Delete this post? This is irreversible.' }, class: "float-end btn btn-sm btn-outline-danger" %></div>
+            <div><%= button_to "Delete", community_post_path(post.community_id, post.id), remote: true, method: :delete, data: { confirm: 'Delete this post? This is irreversible.' }, class: "float-end btn btn-sm btn-outline-danger" %></div>
           <% end %>
         <% end%>
       <% end%></div>
