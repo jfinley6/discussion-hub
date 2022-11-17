@@ -15,14 +15,18 @@
     <p>Cake Day: <%= @profile.created_at.strftime("%m/%d/%Y") %></p>
     <p>Karma: <span id="karma" style="color: <%= changeKarmaColor @karma %>"><%= @karma %></span></p>
     <h5>Community Subscriptions</h4>
-    <% @subscriptions.each do |subscription| %>
-      <li class="list-group-item px-3"><%= link_to "r/#{subscription.community.name}", subscription.community %></li>
-    <% end %>
-
-</div>
-  <div class="col-sm-8">
-    <h5>Recent Posts</h5>
-    <%= render partial: "posts/lists", locals: {posts: @posts}  %>
-
+    <div class="mb-4">
+      <% @subscriptions.each do |subscription| %>
+        <% if subscription == @subscriptions.last %>
+          <%= link_to subscription.community.name, subscription.community  %>
+        <% else %>
+          <%= link_to subscription.community.name, subscription.community %>, 
+        <% end %>
+      <% end%>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <h5>Recent Posts</h5>
+      <%= render partial: "posts/lists", locals: {posts: @posts}  %>
+    </div>
   </div>
-</div>
