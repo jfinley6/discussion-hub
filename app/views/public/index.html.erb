@@ -1,24 +1,3 @@
-  <% unless account_signed_in? %>
-  <div class="row">
-    <div class="col">
-      <p class="h4">Trending Today</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">
-      Trending 1
-    </div>
-    <div class="col-sm-3">
-      Trending 2
-    </div>
-    <div class="col-sm-3">
-      Trending 3
-    </div>
-    <div class="col-sm-3">
-      Trending 4
-    </div>
-  </div>
-<% end %>
 <div class="row">
   <div class="col">
     <p class="h4 pb-1">Popular Posts</p>
@@ -26,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-sm-7">
-    <%= render partial: "posts/lists", locals: { posts: @posts } %>
+    <%= render partial: "posts/lists" %>
   </div>
   <div class="col-sm-5">
     <p class="h5">New Communities</p>
@@ -44,6 +23,6 @@
         <% end %>
       </ul>
     </div>
-    <%= link_to "View all", communities_path, class: "btn btn-primary mt-2"%>
+    <%= link_to "View all", communities_path, class: "btn btn-primary mt-2 mb-3"%>
   </div>
 </div>
