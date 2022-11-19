@@ -1,4 +1,4 @@
-$("#vote-actions-<%= @post.id %> .score").text("<%= @post.score %>")
+$("#vote-actions-<%= @post.id %> .score").html("<strong><%= @post.score %></strong>")
 $("#vote-actions-<%= @post.id %> .downvote, #vote-actions-<%= @post.id %> .upvote").removeClass("active");
 
 <% if @previous_vote === true %>
