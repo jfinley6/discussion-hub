@@ -2,9 +2,28 @@ class PostsController < ApplicationController
     before_action :authenticate_account!, except: [ :index, :show ]
     before_action :set_post, only: [:show]
     before_action :auth_subscriber, only: [:new]
+    helper_method :params
 
     def index
-        @posts = Post.all
+        subscriptions = Subscription.where(account_id: current_account)
+        front_page_posts = Array.new
+        subscriptions.each { |subscription|
+            if Community.find(subscription.community_id).posts === []
+
+            else
+                front_page_posts.push(Community.find(subscription.community_id).posts)
+            end
+        }
+
+        if params[:sort] === "new"
+            # time parameter will eventually be used to sort by time rather than order
+            @posts = Post.order("#{params[:time]} DESC").limit(20)
+        elsif params[:sort] === "front_page"
+            @posts = front_page_posts.flatten
+        end
+
+        @url = request.original_url
+        @communities = Community.all.order(id: :desc).limit(5)
     end
 
     def show 
