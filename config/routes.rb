@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   post '/posts/vote', to: 'votes#create' 
 
+  #default parameter will soon sort by time
+  get '/:sort(/:time)', to: 'posts#index', :defaults => { :time => 'id' } 
+
   root to: 'public#index'
   
 end
