@@ -1,35 +1,41 @@
+<% @count = 0 %>
+<% if @posts.length === 0 %>
+  <div><strong>No posts to display. Try subscribing to some communities.</strong></div>
+<% end %>
 <% @posts.each do |post| %>
   <div id="post-<%= post.id %>" class="card p-3 mb-3">
     <div class="row">
-      <div class="mt-2 col-1">
-        <div id="vote-actions-<%= post.id %>" data-account="<%= account_signed_in? %>" data-id="<%= post.id %>" class="d-flex flex-column align-items-center vote">
-          <span id="up-arrow" class="fa fa-arrow-up mb-1 upvote <%= is_upvoted post %>"></span>
-          <span class="text-center score"><%= post.score %></span>
-          <span id="down-arrow" class="fa fa-arrow-down mt-1 downvote <%= is_downvoted post %>"></span>
+      <div class="mt-2 col-sm-1 px-2 col-2">
+        <div class="d-flex justify-content-between align-items-center">
+          <small style="color: #989696" class="d-flex align-items-center"><%= @count += 1 %> </small>
+          <div id="vote-actions-<%= post.id %>" data-account="<%= account_signed_in? %>" data-id="<%= post.id %>" class="d-flex flex-column align-items-center vote">
+            <span id="up-arrow" class="fa fa-arrow-up mb-1 upvote <%= is_upvoted post %>"></span>
+            <span class="text-center score"><strong><%= post.score %></strong></span>
+            <span id="down-arrow" class="fa fa-arrow-down mt-1 downvote <%= is_downvoted post %>"></span>
+          </div>
         </div>
       </div>
-      <div class="col-9">
+      <div class="col-sm-9 col-9">
         <h4 class="mb-0">
           <%= link_to post.title, community_post_path(post.community_id, post), class: "text-decoration-none" %>
         </h4>
         <p class="mb-0">
-          <small>Posted by <%= link_to post.account.username, profile_path(post.account.username) %> in <%= link_to post.community.name.capitalize, post.community %>  <%= time_ago_in_words post.created_at %> ago.</small>
+          <small>Submitted <%= time_ago_in_words post.created_at %> ago by  <%= link_to post.account.username, profile_path(post.account.username), class: "text-decoration-none"  %> to <%= link_to post.community.name, post.community, class: "text-decoration-none" %>  </small>
         </p>
-        <p>
-          <small><%= pluralize post.total_comments, "comment" %> </small>
+        <p class="d-flex">
+          <small class=""><%= pluralize post.total_comments, "comment" %> </small>
+          <% if account_signed_in? %>
+            <% if post.account_id === current_account.id %>
+              <small class="mx-2"><%= link_to "Delete", community_post_path(post.community_id, post.id), remote: true, method: :delete, data: { confirm: 'Delete this post? This is irreversible.' }, class: "text-decoration-none" %></small>
+            <% end%>
+          <% end%>
         </p>
         <p class="mb-0">
           <%= truncate post.body, length: 200 %>
         </p>
       </div>
-      <div class="col-2">
-      <% if account_signed_in? %>
-        <% if post.account_id === current_account.id %>
-          <% if current_page?(profile_path(current_account.username)) %>
-            <div><%= button_to "Delete", community_post_path(post.community_id, post.id), remote: true, method: :delete, data: { confirm: 'Delete this post? This is irreversible.' }, class: "float-end btn btn-sm btn-outline-danger" %></div>
-          <% end %>
-        <% end%>
-      <% end%></div>
+      <div class="col-sm-2 col-8">
+      </div>
     </div>
   </div>
 <% end %>
