@@ -1,24 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 d-flex border-bottom justify-content-between">
-      <p role="button" class="h3 mb-2 mt-2 d-flex align-items-center"><%= link_to "Reddit Clone", root_path, class: "text-decoration-none" %></p>
-      <div class="float-right d-flex align-items-center">
-        <% if account_signed_in? %>
-          <div class="dropdown">
-            <a href="#" class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= current_account.username %> • <span id="karma-header" style="color: <%= changeKarmaColor current_account.karma %>"><%= current_account.karma %></span>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <%= link_to "Profile" , profile_path(current_account.username), class: "dropdown-item" %>
-              <%= link_to "Settings" , edit_account_registration_path , class: "dropdown-item" %>
-              <%= link_to "Sign Out" , destroy_account_session_path, method: :get, class: "dropdown-item" %>
-            </ul>
-          </div>
-        <% else %>
-          <%= link_to "Log In" , new_account_session_path, class: "btn btn-outline-primary mx-2" %>
-          <%= link_to "Sign Up" , new_account_registration_path, class: "btn btn-primary" %>
-        <% end %>
-      </div>
+    <div class="col-2">
+      <p role="button" class="h4 mb-2 mt-2 d-flex align-items-center"><%= link_to "Reddit Clone", root_path, class: "text-decoration-none" %></p>
+    </div>
+    <div class="col-5 px-4 px-sm-0 d-flex align-items-center">
+      <%= render partial: "posts/sort_buttons" %>
+    </div>
+    <div class="col-5 float-end d-flex justify-content-end px-0 align-items-center">
+      <% if account_signed_in? %>
+        <div class="dropdown">
+          <a href="#" class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= current_account.username %> • <span id="karma-header" style="color: <%= changeKarmaColor current_account.karma %>"><%= current_account.karma %></span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <%= link_to "Profile" , profile_path(current_account.username), class: "dropdown-item" %>
+            <%= link_to "Settings" , edit_account_registration_path , class: "dropdown-item" %>
+            <%= link_to "Sign Out" , destroy_account_session_path, method: :get, class: "dropdown-item" %>
+          </ul>
+        </div>
+      <% else %>
+        <%= link_to "Log In" , new_account_session_path, class: "btn btn-outline-primary mx-2" %>
+        <%= link_to "Sign Up" , new_account_registration_path, class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>
