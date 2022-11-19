@@ -5,10 +5,14 @@ class SubscriptionsController < ApplicationController
     end
 
     def create
-        @subscription = Subscription.new(subscription_params)
-        @subscription.account_id = current_account.id
-        @subscription.save
-        redirect_to community_path(@subscription.community)
+        if (account_signed_in?)
+            @subscription = Subscription.new(subscription_params)
+            @subscription.account_id = current_account.id
+            @subscription.save
+            redirect_to community_path(@subscription.community)
+        else
+            redirect_to new_account_registration_path
+        end
     end
 
     def destroy
