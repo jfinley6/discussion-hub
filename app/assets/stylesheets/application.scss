@@ -12,7 +12,7 @@
     transform: scale(1.5);
 
     &.active {
-            color: #ff0000;
+            color: #fb5420;
         }
 }
 
@@ -26,11 +26,15 @@
 
 #up-arrow:hover {
     // transform: translateY(-5px);
-    color: #FF5700;
+    color: #fb5420;
     cursor: pointer;
 }
 
 #down-arrow:hover {
     color: #9494FF;
     cursor: pointer;
+}
+
+.override a {
+    color: #fb5420 !important;
 }
