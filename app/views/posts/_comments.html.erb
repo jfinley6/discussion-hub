@@ -1,14 +1,15 @@
 <% comments.each do |comment| %>
-  <div id="comment-<%= comment.id %>" class="card p-3 mb-2">
+  <div id="comment-<%= comment.id %>" class="col-8 card p-3 w-100 pb-0 mx-0 mb-2">
     <div class="d-flex justify-content-between">
-      <div><%= link_to comment.account.username, profile_path(comment.account.username) %></div>
+      <div><%= link_to comment.account.username, profile_path(comment.account.username), class: "text-decoration-none" %> <%= tag.small time_ago_in_words comment.created_at %> <small>ago</small></div>
+    </div>
+    <%= simple_format comment.message %>
+    <p class ="d-flex mb-2">
       <% if account_signed_in? %>
         <% if comment.account_id === current_account.id %>
-          <div><%= button_to "Delete Comment", comment_path(comment.id), remote: true, method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, class: "float-end btn btn-sm btn-outline-danger" %></div>
+          <small><%= link_to "Delete", comment_path(comment.id), remote: true, method: :delete, data: { confirm: 'Are you sure you want to delete this?' }, style:"color: rgb(102,102,102); font-weight: 700", class: "text-decoration-none" %></small>
         <% end%>
       <% end%>
-    </div>
-    
-    <%= simple_format comment.message %>
+    </p>
   </div>
 <% end %>
