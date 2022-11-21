@@ -1,2 +1,3 @@
-document.getElementById("post-comments").innerHTML = "<%= escape_javascript(render partial: 'posts/comments', locals: { comments: @comments }) %>";
-document.getElementById("new_comment").reset()
+$("#post-comments").html("<%= escape_javascript(render partial: 'posts/comments', locals: { comments: @comments }) %>")
+$("#post-comment").text("<%= pluralize @post.total_comments, "comment" %>")
+$("#new_comment").trigger("reset")
