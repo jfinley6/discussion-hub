@@ -17,7 +17,11 @@ class Post < ActiveRecord::Base
     end
 
     def percentage_upvoted
-        return ((self.upvotes.to_f)/(self.upvotes.to_f + self.downvotes.to_f))*100
+        if self.upvotes > 0 || self.downvotes > 0  
+            ((self.upvotes.to_f)/(self.upvotes.to_f + self.downvotes.to_f))*100
+        elsif self.upvotes == 0 && self.downvotes == 0
+            0.0
+        end
     end
 
 end
