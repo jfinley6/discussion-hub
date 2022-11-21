@@ -9,7 +9,7 @@ class SubscriptionsController < ApplicationController
             @subscription = Subscription.new(subscription_params)
             @subscription.account_id = current_account.id
             @subscription.save
-            redirect_to community_path(@subscription.community)
+            redirect_back(fallback_location: root_path)
         else
             redirect_to new_account_registration_path
         end
@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
         @community = Community.find(params[:community_id])
         @subscription = Subscription.find_by(community_id: params[:community_id], account_id: current_account.id)
         @subscription.destroy
-        redirect_to community_path(@community)
+        redirect_back(fallback_location: root_path)
     end
 
     private
