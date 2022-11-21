@@ -1,18 +1,84 @@
-<p><%= link_to "← #{@post.community.name.capitalize}", @post.community, class: "text-decoration-none" %></p>
-
-<h2><%= @post.title %></h2>
-
-<%= simple_format @post.body %>
-
-<div id="post-comments">
-    <%= render partial: "posts/comments", locals: {comments: @post.comments}%>
-</div>
-
-<h5>Leave a comment</h5>
-<%= form_for @comment, remote: true, method: :post, html: {id: "new_comment"} do |f| %>
-  <%= f.hidden_field :post_id, value: @post.id  %>
-  <div id="comment-form" class="form-label">
-    <%= f.text_area :message, placeholder: "Type comment", class: "form-control"  %>
+<div class="row mb-2">
+  <div class="col-7 col-sm-8">
+    <div class="row">
+      <div class="d-flex">
+        <div class="d-flex align-items-center col-1">
+          <%= render partial: "posts/post_votes", locals: { post: @post} %>
+        </div>
+        <div class="col-11">
+          <p class="mb-0">
+            <%= link_to @post.title, community_post_path(@post.community_id, @post), class: "h4 text-decoration-none" %>
+          </p>
+          <small>submitted <%= time_ago_in_words @post.created_at %> ago by <%= link_to @post.account.username,
+                profile_path(@post.account.username), class: "text-decoration-none" %>
+          </small>
+          <div>
+            <small id="post-comment" class="post-small-links">
+              <%= pluralize @post.total_comments, "comment" %>
+            </small>
+            <% if account_signed_in? %>
+              <% if @post.account_id===current_account.id %>
+                <small class="mx-2 post-small-links">
+                  <%= link_to "delete" , community_post_path(@post.community_id, @post.id), remote: true, method: :delete,
+                    data: { confirm: 'Delete this post? This is irreversible.' }, class: "text-decoration-none" %>
+                </small>
+              <% end%>
+            <% end%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row p-2">
+      <p class="mb-0 p-2 card rounded">
+        <%= @post.body %>
+      </p>
+    </div>
+    <div class="row">
+      <p class="mb-0 h5">Leave a comment</p>
+    </div>
+    <div class="row">
+      <%= form_for @comment, remote: true, method: :post, html: {id: "new_comment" } do |f| %>
+        <%= f.hidden_field :post_id, value: @post.id %>
+        <div id="comment-form" class="form-label">
+          <%= f.text_area :message, placeholder: "Type comment" , class: "form-control" %>
+        </div>
+        <%= f.submit "save" , class: "btn btn-sm btn-secondary mb-2" %>
+      <% end%>
+    </div>
+    <div class="row">
+      <div id="post-comments">
+        <%= render partial: "posts/comments" , locals: {comments: @post.comments}%>
+      </div>
+    </div>
   </div>
-  <%= f.submit "Submit Comment", class: "btn btn-success mb-3" %>
-<% end%>
+  <div class="col-5 col-sm-4">
+    <div class="row">
+      <div>
+        <p class="mb-0 bg-white card-body">
+          <strong>this post was submitted on <%= @post.created_at.strftime("%d %b %Y") %></strong>
+          <div class="d-flex align-items-end card-body bg-white pt-0">
+            <p class="mb-0">
+              <strong><%= @post.score %> <small>points </strong> (<%= @post.percentage_upvoted.truncate %>% upvoted)</small>
+            </p>
+          </div>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <h5 class="mb-1">
+        <%= @post.community.name %>
+      </h5>
+      <div class="d-flex align-items-center">
+        <% if @is_subscribed %>
+          <span><%= button_to "leave", subscription_path(@post.community.id), method: :delete, class: "btn btn-sm btn-danger", style:"font-size: 70%" %></span>
+        <% else %>
+          <%= form_for @subscription do |f| %>
+            <%= f.hidden_field :community_id, value: @post.community_id  %>
+            <%= f.submit "join", class: "btn btn-success btn-sm", style:"font-size: 75%", id: "post-subscription-join-button" %>
+          <% end %>
+        <% end %>
+        <span style="font-size: 70%">&nbsp;<%= pluralize @post.community.subscribers.count, "subscriber" %></span>
+      </div>
+    </div>
+  </div>
+</div>
