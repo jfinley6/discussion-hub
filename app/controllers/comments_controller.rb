@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
         @comment = Comment.new comment_params
         @comment.account_id = current_account.id
         @comment.post.increment!(:total_comments, 1) 
-
+        @post = @comment.post
 
         respond_to do |format|
             format.js {
