@@ -28,6 +28,8 @@ class PostsController < ApplicationController
 
     def show 
         @comment = Comment.new
+        @subscription = Subscription.new
+        @is_subscribed = account_signed_in? ? Subscription.where(community_id: @post.community.id, account_id: current_account.id).any? : false
     end
 
     def new
