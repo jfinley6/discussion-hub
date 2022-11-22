@@ -1,31 +1,35 @@
+<% content_for :title do %>
+  <%= @post.title %>
+<% end %>
+
 <div class="row mb-2">
   <div class="col-7 col-sm-8">
     <div class="row">
       <div class="d-flex">
         <div>
           <div class="mb-1 d-flex flex-row">
-            <div style="width: 10%">
+            <div style="margin-top: 10px" class="col">
               <%= render partial: "posts/post_votes", locals: { post: @post} %>
             </div>
-            <div class="mx-3 d-flex align-items-center">
-              <%= link_to @post.title, community_post_path(@post.community_id, @post), class: "h4 text-decoration-none" %>
-            </div>
-          </div>
-          <small>submitted <%= time_ago_in_words @post.created_at %> ago by <%= link_to @post.account.username,
+            <div class="mx-3 d-flex flex-column justify-content-center align-items-start justify-con">
+              <%= link_to @post.title, community_post_path(@post.community_id, @post), class: "h4 mb-0 text-decoration-none" %>
+              <small>submitted <%= time_ago_in_words @post.created_at %> ago by <%= link_to @post.account.username,
                 profile_path(@post.account.username), class: "text-decoration-none" %>
-          </small>
-          <div>
-            <small id="post-comment" class="post-small-links">
-              <%= pluralize @post.total_comments, "comment" %>
-            </small>
-            <% if account_signed_in? %>
-              <% if @post.account_id===current_account.id %>
-                <small class="mx-2 post-small-links">
-                  <%= link_to "delete" , community_post_path(@post.community_id, @post.id), remote: true, method: :delete,
-                    data: { confirm: 'Delete this post? This is irreversible.' }, class: "text-decoration-none" %>
+              </small>
+              <div>
+                <small id="post-comment" class="post-small-links">
+                  <%= pluralize @post.total_comments, "comment" %>
                 </small>
-              <% end%>
-            <% end%>
+                <% if account_signed_in? %>
+                  <% if @post.account_id===current_account.id %>
+                    <small class="mx-2 post-small-links">
+                      <%= link_to "delete" , community_post_path(@post.community_id, @post.id), remote: true, method: :delete,
+                        data: { confirm: 'Delete this post? This is irreversible.' }, class: "text-decoration-none" %>
+                    </small>
+                  <% end%>
+                <% end%>
+              </div>
+            </div>
           </div>
         </div>
       </div>
