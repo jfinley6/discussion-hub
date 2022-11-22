@@ -1,1 +1,2 @@
 $("#post-<%= @post.id %>").remove()
+window.location.replace("<%= community_path(@post.community) %>");
