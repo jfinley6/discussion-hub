@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <% if cookies[:moon] == "dark mode off" %>
+      <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <% else %>
+      <%= stylesheet_link_tag "application_dark", "data-turbo-track": "reload" %>
+    <% end %>
     <%= javascript_include_tag :jquery, :jquery_ujs %>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <%= javascript_importmap_tags %>
@@ -13,6 +17,7 @@
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
   <body>
+    <%= render partial: "layouts/community_header" %>
     <%= render partial: "layouts/header" %>
     <section style="background-color: #EBEBEB">
       <div class="container">
