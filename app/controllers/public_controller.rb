@@ -4,6 +4,9 @@ class PublicController < ApplicationController
         @communities = Community.all.order(id: :desc).limit(5)
         @posts = Post.limit(20).sort_by{ |p| p.score}.reverse
         @url = request.original_url
+
+        cookies[:moon] ||= "dark mode off"
+
     end
 
     def profile
