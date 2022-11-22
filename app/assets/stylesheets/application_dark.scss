@@ -1,0 +1,54 @@
+// app/assets/stylesheets/application.scss
+// ...
+@import "bootstrap";
+// ...
+
+// .card {
+
+//         box-shadow: 0 8px 8px -4px lightblue;
+// }
+
+* {
+    font-family: "verdana"
+}
+
+#up-arrow {
+    transform: scale(1.5);
+
+    &.active {
+            color: #fb5420;
+        }
+}
+
+#down-arrow {
+    transform: scale(1.5);
+
+    &.active {
+            color: #9494FF;;
+        }
+}
+
+#up-arrow:hover {
+    // transform: translateY(-5px);
+    color: #fb5420;
+    cursor: pointer;
+}
+
+#down-arrow:hover {
+    color: #9494FF;
+    cursor: pointer;
+}
+
+.override a {
+    color: #fb5420 !important;
+}
+
+.post-small-links {
+    color: rgb(102, 102, 102);
+    font-weight: 700
+}
+
+.post-small-links a {
+    color: rgb(102, 102, 102);
+    font-weight: 700
+}
