@@ -1,0 +1,24 @@
+<div id="community_header" style="font-size: 70%">
+  <div class="row justify-content-around">
+    <div style="white-space: nowrap" class="d-flex align-content-center col-8">
+        <div class="dropdown d-flex align-items-center">
+          <a href="#" class="text-decoration-none dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            My Communities
+          </a>
+          <ul class="dropdown-menu p-0" aria-labelledby="dropdownMenuButton1">
+          <% if account_signed_in? %>
+              <% current_account.communities.order(:name).each do |community| %>
+                <%= link_to community.name, community, class: "dropdown-item", style:"font-size: 60%" %>
+              <% end %>
+              <%= link_to "All Communities", communities_path, class: "dropdown-item", style:"font-size: 60%" %>
+          <% else %>
+              <%= link_to "All Communities", communities_path, class: "dropdown-item", style:"font-size: 60%" %>
+          <% end %>
+          </ul>
+        </div>
+    </div>
+    <div style="white-space: nowrap"  class="col-3 d-flex justify-content-end align-items-center">
+        <%= link_to "View Communities", communities_path, class: "btn btn-sm btn-primary mt-1 mb-1", style: "font-size: 80%"%>
+    </div>
+  </div>
+</div>
