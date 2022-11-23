@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   #default parameter will soon sort by time
   get '/:sort(/:time)', to: 'posts#index', :defaults => { :time => 'id' } 
 
-  root to: 'public#index'
+  root to: 'posts#index', sort: "front_page"
   
 end
