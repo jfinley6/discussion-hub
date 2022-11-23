@@ -1,7 +1,10 @@
 <div class="d-flex align-items-center px-0">
-  <span class="px-3 <%= postSortSelection @url, "top" %>"><%= link_to "Top", root_path, class: "text-decoration-none" %></span>
-  <span class="px-2 <%= postSortSelection @url, "new" %>"><%= link_to "New", root_path + "new", class: "text-decoration-none" %></span>
   <% if account_signed_in? %>
-  <span class="px-2 <%= postSortSelection @url, "front_page" %>"><%= link_to "Home", root_path + "front_page", class: "text-decoration-none" %></span>
+    <span class="px-2 <%= postSortSelection @url, "front_page", @sort %>"><%= link_to "Home", root_path, class: "text-decoration-none" %></span>
+    <span class="px-3 <%= postSortSelection @url, "top", @sort %>"><%= link_to "Top", root_path + "top", class: "text-decoration-none" %></span>
+  <% else %>
+    <span class="px-3 <%= postSortSelection @url, "top", @sort %>"><%= link_to "Top", root_path, class: "text-decoration-none" %></span>
   <% end %>
+  
+  <span class="px-2 <%= postSortSelection @url, "new", @sort %>"><%= link_to "New", root_path + "new", class: "text-decoration-none" %></span>
 </div>
