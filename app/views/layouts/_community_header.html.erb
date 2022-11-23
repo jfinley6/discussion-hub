@@ -5,6 +5,9 @@
         <a href="#" style="font-size: 110%" class="text-decoration-none dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           My Communities
         </a>
+        <div class="mx-2">
+          <%= render partial: "posts/sort_buttons" %>
+        </div>
         <ul class="dropdown-menu p-0" aria-labelledby="dropdownMenuButton1">
           <% if account_signed_in? %>
             <% current_account.communities.order(:name).each do |community| %>

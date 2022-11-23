@@ -1,16 +1,14 @@
 <div id="page-header" class="container">
   <div class="row">
-    <div class="col-sm-1 col-2">
+    <div class="col-sm-6 col-7">
       <p role="button" class="h4 mb-2 mt-2 d-flex align-items-center"><%= link_to "Reddit", root_path, class: "text-decoration-none" %></p>
     </div>
-    <div class="col-5 px-4 px-sm-0 d-flex align-items-center">
-      <%= render partial: "posts/sort_buttons" %>
-    </div>
+    
     <div class="col-sm-6 col-5 float-end d-flex justify-content-end px-0 align-items-center">
       <% if account_signed_in? %>
         <div class="dropdown">
           <a href="#" class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= current_account.username %> • <span id="karma-header" style="color: <%= changeKarmaColor current_account.karma %>"><%= current_account.karma %></span>
+            <%= current_account.username %> (<span id="karma-header" style="color: <%= changeKarmaColor current_account.karma %>"><%= current_account.karma %></span>)
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <%= link_to "Profile" , profile_path(current_account.username), class: "dropdown-item" %>
