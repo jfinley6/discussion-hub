@@ -5,6 +5,14 @@ class PostsController < ApplicationController
     helper_method :params
 
     def index
+        cookies[:moon] ||= "dark mode off"
+        
+        if account_signed_in?
+            
+        elsif params[:sort] === "front_page"
+            params[:sort] = "top"
+        end
+
         subscriptions = Subscription.where(account_id: current_account)
         front_page_posts = Array.new
         subscriptions.each { |subscription|
@@ -19,9 +27,13 @@ class PostsController < ApplicationController
             # time parameter will eventually be used to sort by time rather than order
             @posts = Post.order("#{params[:time]} DESC").limit(20)
         elsif params[:sort] === "front_page"
-            @posts = front_page_posts.flatten
+            front_page_posts = front_page_posts.flatten
+            @posts = front_page_posts.sort_by{|obj| -obj.upvotes}
+        elsif params[:sort] === "top"
+            @posts = Post.all.order("upvotes DESC")
         end
 
+        @sort = params[:sort]
         @url = request.original_url
         @communities = Community.all.order(id: :desc).limit(5)
     end
