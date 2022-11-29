@@ -35,6 +35,8 @@ gem "jbuilder"
 
 gem 'htmlbeautifier'
 
+gem 'securerandom'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -81,3 +83,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "byebug", "~> 11.1", :groups => [:development, :test]
