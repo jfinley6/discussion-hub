@@ -52,8 +52,9 @@ class PostsController < ApplicationController
     def create
         @post = Post.new post_params
         @post.account_id = current_account.id
-        @post.community_id = params[:community_id]
-        @community = Community.find(params[:community_id])
+        @post.community_id = Community.find_by(slug: params[:community_id]).id
+        @post.slug = @post.title.downcase.tr_s(' ', '_').gsub("?", "").gsub("'", "").gsub("!", "") + "_" + SecureRandom.hex(4)
+        @community = Community.find_by(slug: params[:community_id])
         if @post.save
             @vote = Vote.new
             @vote.account_id = current_account.id
@@ -63,7 +64,7 @@ class PostsController < ApplicationController
             @vote.account.increment!(:karma, 1)
             redirect_to community_path(@community)
         else
-            @community = Community.find(params[:community_id])
+            @community = Community.find_by(slug: params[:community_id])
             render :new 
         end
     end
@@ -85,12 +86,12 @@ class PostsController < ApplicationController
     private
 
     def set_post
-        @post = Post.includes(:comments).find(params[:id])
+        @post = Post.includes(:comments).friendly.find(params[:id])
     end
 
     def auth_subscriber
-        @community = Community.find(params[:community_id])
-        unless Subscription.where(community_id: params[:community_id], account_id: current_account.id).any?
+        @community = Community.find_by(slug: params[:community_id])
+        unless Subscription.where(community_id: @community.id, account_id: current_account.id).any?
             redirect_to community_path(@community), flash: {danger: "You aren't subscribed to this community"}
         end
     end
