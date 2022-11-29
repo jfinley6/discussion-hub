@@ -12,4 +12,10 @@ module PostsHelper
         end
     end
 
+    def profile?(controller)
+        if controller == "posts"
+            "px-3"
+        end
+    end
+
 end
