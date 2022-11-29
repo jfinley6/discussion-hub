@@ -1,14 +1,22 @@
+<% content_for :title do %>
+  overview for <%= @profile.username %>
+<% end %>
+
 <div class="row">
+<div class="col-sm-8">
+      <h5>Recent Posts</h5>
+      <%= render partial: "posts/lists", locals: {posts: @posts}  %>
+    </div>
   <div class="col-sm-4">
     <div class="container p-0">
       <div class="row ">
         <div class="col-md-6">
-          <p class="h4"><%= @profile.full_name %></p>
-          <p><%= @profile.username %></p>
+          <%# <p class="h4"><%=# @profile.full_name</p>  %>
+          <p class="h4"><%= @profile.username %></p>
         </div>
-        <div class="col-md-6">
+        <%# <div class="col-md-6">
           Profile Picture
-        </div>
+        </div> %>
       </div>
     </div>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, sit dolorem consequuntur rerum nesciunt laborum? Quae dolore ullam, quisquam, fugit veniam laudantium, tempore totam placeat inventore eligendi soluta deleniti nostrum.</p>
@@ -25,8 +33,5 @@
       <% end%>
       </div>
     </div>
-    <div class="col-sm-8">
-      <h5>Recent Posts</h5>
-      <%= render partial: "posts/lists", locals: {posts: @posts}  %>
-    </div>
+    
   </div>
