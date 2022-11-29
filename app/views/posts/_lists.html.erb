@@ -15,10 +15,10 @@
       </div>
       <div class="col-sm-9 col-9">
         <h4 class="mb-0">
-          <%= link_to post.title, community_post_path(post.community_id, post), class: "text-decoration-none" %>
+          <%= link_to post.title, community_post_path(post.community.url, post), class: "text-decoration-none" %>
         </h4>
         <p class="mb-0">
-          <small>Submitted <%= time_ago_in_words post.created_at %> ago by  <%= link_to post.account.username, profile_path(post.account.username), class: "text-decoration-none"  %> to <%= link_to post.community.name, post.community, class: "text-decoration-none" %>  </small>
+          <small>Submitted <%= time_ago_in_words post.created_at %> ago by  <%= link_to post.account.username, profile_path(post.account.username), class: "text-decoration-none"  %> to <%= link_to post.community.url, post.community, class: "text-decoration-none" %>  </small>
         </p>
         <p class="d-flex">
           <small class="post-small-links"><%= link_to (pluralize post.total_comments, "comment"), community_post_path(post.community_id, post, anchor: 'post-comments'), class: "text-decoration-none"  %> </small>
