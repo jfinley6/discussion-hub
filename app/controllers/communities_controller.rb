@@ -22,6 +22,7 @@ class CommunitiesController < ApplicationController
     def create
         @community = Community.new community_params
         @community.account_id = current_account.id
+        @community.slug = @community.url
 
         if @community.save
             redirect_to communities_path
