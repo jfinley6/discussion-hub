@@ -1,7 +1,7 @@
 <%= title @post.title %>
 
 <% content_for :header_info do %>
-  <%= link_to @post.community.name, @post.community, class: "text-decoration-none text-dark fw-bold" %>
+  <%= link_to @post.community.url, @post.community, class: "text-decoration-none text-dark fw-bold" %>
 <% end %>
 
 <div class="row mb-2">
@@ -74,7 +74,7 @@
     </div>
     <div class="row">
       <h5 class="mb-1">
-        <%= @post.community.name %>
+        <%= @post.community.url %>
       </h5>
       <div class="d-flex align-items-center">
         <% if @is_subscribed %>
