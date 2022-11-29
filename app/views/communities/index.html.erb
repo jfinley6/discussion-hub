@@ -9,7 +9,7 @@
       <% @communities.each do |community| %>
         <div class="card p-3 mb-3">
           <h4 class="mb-0">
-            <%= link_to community.name, community %>
+            <%= link_to community.url, community %>
           </h4>
           <p><%= community.summary %></p>
         </div>
