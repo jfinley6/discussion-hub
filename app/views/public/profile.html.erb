@@ -2,6 +2,11 @@
   overview for <%= @profile.username %>
 <% end %>
 
+<% content_for :header_info do %>
+  <p role="button" class="h4 mb-2 mt-2 d-flex align-items-center"><%= link_to "Reddit", root_path, class: "text-decoration-none" %></p>
+  <div class="d-flex mx-3 align-items-center fw-bold"><%= @profile.username %></div>
+<% end %>
+
 <div class="row">
 <div class="col-sm-8">
       <h5>Recent Posts</h5>

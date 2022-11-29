@@ -2,6 +2,9 @@
   <%= @community.url %>
 <% end %>
 
+<% content_for :header_info do %>
+  <%= link_to @community.url, @community, class: "text-decoration-none fw-bold align-items-center d-flex" %>
+<% end %>
 
 <div class="row mb-3">
   <div class="col-sm-8">

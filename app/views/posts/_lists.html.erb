@@ -1,8 +1,8 @@
 <% @count = 0 %>
-<% if @posts.length === 0 && params[:controller == "posts"] %>
+<% if @posts.length === 0 && params[:controller] === "posts" %>
   <% @posts = Post.all.order("upvotes DESC") %>
-  <div class="d-flex justify-content-center"><strong>Showing all Posts.</strong></div>
-  <div class="d-flex justify-content-center mb-2"><strong>Add communities to your subscriptions to see them on your home page.</strong></div>
+  <div class="d-flex justify-content-center"><strong>Showing All Posts.</strong></div>
+  <div class="d-flex justify-content-center mb-2"><strong>Join communities to see their posts on your home page.</strong></div>
 <% end %>
 <% @posts.each do |post| %>
   <div id="post-<%= post.id %>" class="card p-3 mb-3">
