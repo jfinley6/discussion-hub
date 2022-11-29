@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
-    # extend FriendlyId
-    # friendly_id :community_id, use: :slugged
+    extend FriendlyId
+    friendly_id :community_id, use: :slugged
     belongs_to :account
     belongs_to :community
     has_many :comments, dependent: :destroy
