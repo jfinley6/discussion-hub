@@ -26,9 +26,9 @@
     <div class="mb-4">
       <% @subscriptions.each do |subscription| %>
         <% if subscription == @subscriptions.last %>
-          <%= link_to subscription.community.name.capitalize, subscription.community  %>
+          <%= link_to subscription.community.url.capitalize, subscription.community  %>
         <% else %>
-          <%= link_to subscription.community.name.capitalize, subscription.community %>, 
+          <%= link_to subscription.community.url.capitalize, subscription.community %>, 
         <% end %>
       <% end%>
       </div>
