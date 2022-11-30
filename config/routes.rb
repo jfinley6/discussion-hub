@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "/u/:username", to: 'public#profile', as: :profile
   
   resources :communities do
-    resources :posts
+    resources :posts, :except => [:index]
   end
 
   resources :subscriptions, except: :destroy
@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   root to: 'posts#index', sort: "front_page"
   
+  get '*path' => redirect('/')
+
 end
