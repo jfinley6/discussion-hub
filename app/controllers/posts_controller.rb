@@ -3,8 +3,14 @@ class PostsController < ApplicationController
     before_action :set_post, only: [:show]
     before_action :auth_subscriber, only: [:new]
     helper_method :params
+    before_action :check_params, only: [:index]
 
     def index
+
+        
+
+
+        
         cookies[:moon] ||= "dark mode off"
         
         if account_signed_in?
@@ -99,5 +105,15 @@ class PostsController < ApplicationController
     def post_params
         params.require(:post).permit(:title, :body)
     end
+
+    def check_params
+        if ['front_page', "top", "new"].include? params[:sort]
+
+        else
+            redirect_to root_path
+        end
+    end
+
+    
 
 end
