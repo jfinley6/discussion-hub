@@ -1,39 +1,64 @@
 <% content_for :title do %>
   <%= @community.url %>
 <% end %>
-
 <% content_for :header_info do %>
   <%= link_to @community.url, @community, class: "h4 mb-2 mt-2 text-decoration-none fw-bold align-items-center d-flex" %>
 <% end %>
-
 <div class="row mb-3">
-  <div class="col-sm-8">
-    <h3><%= @community.url %></h3>
+  <div class="col-sm-5 d-inline d-sm-none">
+    <div class="dropdown">
+      <button class="w-100 mb-2 btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <%= @community.url %> info
+      </button>
+      <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
+        <% if @is_subscribed %>
+          <li class="dropdown-item"><%= link_to "Create New Post", new_community_post_path(@community.slug), method: :get, class: "w-100 btn btn-primary float-end" %></li>
+        <% end %>
+        <li class="dropdown-item">
+          <div class="card p-3">
+            <div class="mb-2 h5">About</div>
+            <div ><%= @community.summary %></div>
+            <div class="mb-2"><%= pluralize @subscribers_count, "member" %> </div>
+          </div>
+        </li>
+        <li class="dropdown-item">
+          <div class="card p-3">
+            <div class="mb-2 h5">Rules</div>
+            <%= simple_format @community.rules %>
+          </div>
+        </li>
+        <li class="dropdown-item">
+          <% if @is_subscribed %>
+            <div><%= button_to "Leave Community", subscription_path(@community.id), method: :delete, class: "w-100 btn btn-sm btn-outline-danger" %></div>
+          <% else %>
+            <%= render partial: "communities/subscribe", locals: {community_id: @community.id} %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="col-sm-4">
-    <% if @is_subscribed %>
-      <%= link_to "Create New Post", new_community_post_path(@community.slug), method: :get, class: "btn btn-primary float-end" %>
-    <% else %>
-      <%= render partial: "communities/subscribe", locals: {community_id: @community.id} %>
-    <% end %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-8">
+  <div class="col-sm-7">
     <%= render partial: "posts/lists", locals: { posts: @posts } %>
   </div>
-  <div class="col-sm-4">
-    <div class="card p-3">
-      <div class="mb-2 h5">About</div>
-      <div ><%= @community.summary %></div>
-      <div class="mb-2"><%= pluralize @subscribers_count, "member" %> </div>
+  <div class="col-sm-5 d-none d-sm-inline">
+    <div class="d-flex flex-column">
       <% if @is_subscribed %>
-        <div><%= button_to "Leave Community", subscription_path(@community.id), method: :delete, class: "btn btn-sm btn-outline-danger" %></div>
+        <%= link_to "Create New Post", new_community_post_path(@community.slug), method: :get, class: "btn btn-primary float-end" %>
+      <% else %>
+        <%= render partial: "communities/subscribe", locals: {community_id: @community.id} %>
       <% end %>
+      <div class="card p-3 mt-2">
+        <div class="mb-2 h5">About</div>
+        <div ><%= @community.summary %></div>
+        <div class="mb-2"><%= pluralize @subscribers_count, "member" %> </div>
+        <% if @is_subscribed %>
+          <div><%= button_to "Leave Community", subscription_path(@community.id), method: :delete, class: "btn btn-sm btn-outline-danger" %></div>
+        <% end %>
+      </div>
+      <div class="card p-3 mt-2">
+        <div class="mb-2 h5">Rules</div>
+        <%= simple_format @community.rules %>
+      </div>
     </div>
-    <small>
-      <h4>Rules</h4>
-      <%= simple_format @community.rules %>
-    </small>
   </div>
 </div>
