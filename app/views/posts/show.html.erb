@@ -1,7 +1,7 @@
 <%= title @post.title %>
 <% content_for :header_info do %>
   <p role="button" class="h4 mb-2 mt-2 d-flex align-items-center"><%= link_to "Reddit", root_path, class: "text-decoration-none" %></p>
-  <%= link_to @post.community.url, @post.community, class: "h6 mb-2 mt-2 mx-2 text-decoration-none fw-bold align-items-center d-flex" %>
+  <%= link_to @post.community.url, @post.community, class: "h6 mb-2 mt-2 mx-2 text-decoration-none text-dark fw-bold align-items-center d-flex" %>
 <% end %>
 <div class="row mb-2">
   <div class="col-sm-5 d-inline d-sm-none">
