@@ -6,11 +6,6 @@ class PostsController < ApplicationController
     before_action :check_params, only: [:index]
 
     def index
-
-        
-
-
-        
         cookies[:moon] ||= "dark mode off"
         
         if account_signed_in?
