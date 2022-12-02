@@ -1,4 +1,4 @@
-<div id="vote-actions-<%= post.id %>" data-account="<%= account_signed_in? %>" data-id="<%= post.id %>" class="w-100 d-flex flex-column align-items-center vote">
+<div id="vote-actions-<%= post.id %>" data-account="<%= account_signed_in? %>" data-id="<%= post.id %>" class="w-50 d-flex flex-column align-items-center vote">
   <div id="up-arrow" class="fa fa-arrow-up mb-1 upvote <%= is_upvoted post %>"></div>
   <div class="text-center score"><strong><%= post.score %></strong></div>
   <div id="down-arrow" class="fa fa-arrow-down mt-1 downvote <%= is_downvoted post %>"></div>
