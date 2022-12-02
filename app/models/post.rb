@@ -5,7 +5,8 @@ class Post < ActiveRecord::Base
     belongs_to :community
     has_many :comments, dependent: :destroy
     has_many :votes, dependent: :destroy
-    validates_presence_of :title, :body, :account_id, :community_id
+    validates_presence_of :title, :content, :account_id, :community_id
+    has_rich_text :content
 
     def score
     # difference between upvotes and downvotes

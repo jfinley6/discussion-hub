@@ -29,7 +29,7 @@
           <% end%>
         </p>
         <p class="mb-0">
-          <%= truncate post.body, length: 200 %>
+          <%= truncate(strip_tags(post.content.to_s), length: 50) %>
         </p>
       </div>
     </div>

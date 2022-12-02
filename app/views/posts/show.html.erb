@@ -39,9 +39,9 @@
       </div>
     </div>
     <div class="row p-2">
-      <p class="mb-0 p-2 card rounded">
-        <%= @post.body %>
-      </p>
+      <div class="mb-0 p-3 card rounded">
+        <%= @post.content %>
+      </div>
     </div>
     <div class="row">
       <p class="mb-0 h5">Leave a comment</p>
@@ -68,7 +68,7 @@
           <strong>this post was submitted on <%= @post.created_at.strftime("%d %b %Y") %></strong>
           <div class="d-flex align-items-end card-body bg-white pt-0">
             <p class="mb-0">
-              <strong><%= @post.score %> <small>points </strong> (<%= @post.percentage_upvoted.truncate %>% upvoted)</small>
+              <strong><%=pluralize @post.score, "point" %> <small> </strong> (<%= @post.percentage_upvoted.truncate %>% upvoted)</small>
             </p>
           </div>
         </p>

@@ -53,6 +53,7 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.new post_params
+
         @post.account_id = current_account.id
         @post.community_id = Community.find_by(slug: params[:community_id]).id
         @post.slug = @post.title.downcase.tr_s(' ', '_').gsub("?", "").gsub("'", "").gsub("!", "") + "_" + SecureRandom.hex(4)
@@ -64,7 +65,7 @@ class PostsController < ApplicationController
             @vote.upvote = true
             @vote.save
             @vote.account.increment!(:karma, 1)
-            redirect_to community_path(@community)
+            redirect_to community_post_path(@post.community.url, @post)
         else
             @community = Community.find_by(slug: params[:community_id])
             render :new 
@@ -99,7 +100,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:title, :body)
+        params.require(:post).permit(:title, :content)
     end
 
     def check_params
