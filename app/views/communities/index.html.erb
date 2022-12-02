@@ -18,17 +18,21 @@
               <div class="d-flex flex-row mb-2">
                 <span><%= button_to "leave", subscription_path(community.id), method: :delete, class: "btn btn-sm btn-danger text-decoration-none", style:"font-size: 70%" %></span>
                 <h4 class="mb-0 mx-2">
-                  <%= link_to community.url, community %>
+                  <%= link_to community.url, community, class: "text-decoration-none" %>
                 </h4>
               </div>
             <% else %>
               <div class="d-flex flex-row mb-2">
                 <span><%= button_to "join", subscription_path(community.id), method: :create, class: "btn btn-sm btn-success text-decoration-none", style:"font-size: 70%" %></span>
                 <h4 class="mb-0 mx-2">
-                  <%= link_to community.url, community %>
+                  <%= link_to community.url, community, class: "text-decoration-none" %>
                 </h4>
               </div>
             <% end %>
+          <% else %>
+            <h4 class="mb-2 mx-2">
+              <%= link_to community.url, community, class: "text-decoration-none" %>
+            </h4>
           <% end %>
           <div class="card p-2">
             <p class="mb-0"><%= community.summary %></p>
@@ -49,16 +53,16 @@
         <div class="mb-2"><%= link_to "Create New Community", new_community_path, class: "btn btn-primary" %></div>
         <div>Home Feed Communities (<%= @subscriptions.count %>)</div>
       </div>
-    <% end %>
-    <div class="list-group">
-      <% @subscriptions.each do |subscription| %>
-        <li class="list-group-item d-flex">
-          <% if account_signed_in? %>
-            <span><%= button_to "leave", subscription_path(subscription.community.id), method: :delete, class: "btn btn-sm btn-danger", style:"font-size: 70%" %></span>
-          <% end %>
-          <%= link_to subscription.community.url.capitalize, subscription.community, class: "text-decoration-none mx-2"  %>
-        </li>
-      <% end %>
+      <div class="list-group">
+        <% @subscriptions.each do |subscription| %>
+          <li class="list-group-item d-flex">
+            <% if account_signed_in? %>
+              <span><%= button_to "leave", subscription_path(subscription.community.id), method: :delete, class: "btn btn-sm btn-danger", style:"font-size: 70%" %></span>
+            <% end %>
+            <%= link_to subscription.community.url.capitalize, subscription.community, class: "text-decoration-none mx-2"  %>
+          </li>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
