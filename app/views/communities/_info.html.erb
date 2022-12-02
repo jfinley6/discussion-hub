@@ -1,0 +1,42 @@
+<div class="dropdown">
+  <button class="w-100 mb-2 btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= community.url %> info
+  </button>
+  <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
+    <% if params[:controller] === "posts" %>
+      <li class="dropdown-item">
+        <p class="mb-0 bg-white card-body">
+          <strong>this post was submitted on <%= community.created_at.strftime("%d %b %Y") %></strong>
+          <div class="d-flex align-items-end card-body bg-white pt-0">
+            <p class="mb-0">
+              <strong><%= @post.score %> <small>points </strong> (<%= @post.percentage_upvoted.truncate %>% upvoted)</small>
+            </p>
+          </div>
+        </p>
+      </li>
+    <% end %>
+    <% if @is_subscribed && params[:controller] === "communities" %>
+      <li class="dropdown-item"><%= link_to "Create New Post", new_community_post_path(community.slug), method: :get, class: "w-100 btn btn-primary" %></li>
+    <% end %>
+    <li class="dropdown-item">
+      <div class="card p-3">
+        <div class="mb-2 h5">About</div>
+        <div ><%= community.summary %></div>
+        <div class="mb-2"><%= pluralize @subscribers_count, "member" %> </div>
+      </div>
+    </li>
+    <li class="dropdown-item">
+      <div class="card p-3">
+        <div class="mb-2 h5">Rules</div>
+        <%= simple_format community.rules %>
+      </div>
+    </li>
+    <li class="dropdown-item">
+      <% if @is_subscribed %>
+        <div><%= button_to "Leave Community", subscription_path(community.id), method: :delete, class: "w-100 btn btn-sm btn-outline-danger" %></div>
+      <% else %>
+        <%= render partial: "communities/subscribe", locals: {community_id: community.id} %>
+      <% end %>
+    </li>
+  </ul>
+</div>
