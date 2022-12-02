@@ -5,7 +5,7 @@ class CommunitiesController < ApplicationController
     def index
         @communities = Community.all
         @communities_count = Community.all.count
-
+        @subscriptions = account_signed_in? ? Subscription.where(account_id: current_account.id) : nil
     end
 
     def show 
