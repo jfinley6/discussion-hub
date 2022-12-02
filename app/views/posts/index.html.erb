@@ -1,9 +1,9 @@
 <% content_for :title do %>
-  <% if request.original_url == "http://localhost:3000/new" %>
+  <% if request.original_url == "https://reddit-clone-rails.herokuapp.com/new" %>
     newest submissions
-  <% elsif request.original_url == "http://localhost:3000/" %>
+  <% elsif request.original_url == "https://reddit-clone-rails.herokuapp.com/" %>
     reddit: the front page of the internet
-  <% elsif request.original_url == "http://localhost:3000/top" %>
+  <% elsif request.original_url == "https://reddit-clone-rails.herokuapp.com/top" %>
     top scoring links: all
   <% end %>
 <% end %>
