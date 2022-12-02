@@ -1,6 +1,5 @@
 <div class="d-flex align-items-center px-0">
   <% if account_signed_in? %>
-  <%= @url %>
     <span class="px-2 <%= postSortSelection @url, "front_page", @sort %>"><%= link_to "Home", root_path, class: "text-decoration-none" %></span>
     <span class="px-3 <%= postSortSelection @url, "top", @sort %>"><%= link_to "Top", root_path + "top", class: "text-decoration-none" %></span>
   <% else %>
