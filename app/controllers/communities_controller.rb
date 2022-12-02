@@ -25,7 +25,10 @@ class CommunitiesController < ApplicationController
         @community.slug = @community.url
 
         if @community.save
-            redirect_to communities_path
+            @subscription = Subscription.new(community_id: @community.id)
+            @subscription.account_id = current_account.id
+            @subscription.save
+            redirect_to community_path(@community)
         else
             render :new 
         end
