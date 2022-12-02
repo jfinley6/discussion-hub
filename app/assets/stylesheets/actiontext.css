@@ -43,3 +43,7 @@
 .trix-button--icon-quote {
   display: none !important;
 }
+
+.customized-min-height {
+    height: 300px;
+}
