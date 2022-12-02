@@ -33,9 +33,9 @@
     </li>
     <li class="dropdown-item">
       <% if @is_subscribed %>
-        <div><%= button_to "Leave Community", subscription_path(community.id), method: :delete, class: "w-100 btn btn-sm btn-outline-danger" %></div>
+        <div><%= button_to "Leave Community", subscription_path(community.id), method: :delete, class: "w-100 btn btn-sm btn-danger" %></div>
       <% else %>
-        <%= render partial: "communities/subscribe", locals: {community_id: community.id} %>
+        <%= link_to "Join Community", subscription_path(@community.id), method: :create, class: "btn btn-success w-100" %>
       <% end %>
     </li>
   </ul>
