@@ -50,7 +50,7 @@
   <div class="col-sm-4 d-none d-sm-inline">
     <% if account_signed_in? %>
       <div class="d-flex flex-column align-items-center">
-        <div class="mb-2"><%= link_to "Create New Community", new_community_path, class: "btn btn-primary" %></div>
+        <div class="mb-2 w-100"><%= link_to "Create New Community", new_community_path, class: "w-100 btn btn-primary" %></div>
         <div>Home Feed Communities (<%= @subscriptions.count %>)</div>
       </div>
       <div class="list-group">
