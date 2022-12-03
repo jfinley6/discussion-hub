@@ -29,7 +29,10 @@
           <% end%>
         </p>
         <p class="mb-0">
-          <%= truncate(strip_tags(post.content.to_s), length: 50) %>
+          <%= truncate(strip_tags(post.content.to_s), length: 140) %>
+          <% if post.content.to_s.length > 140 %>
+            <%= link_to "see more", community_post_path(post.community.url, post), class: "text-decoration-none" %>
+          <% end %>
         </p>
       </div>
     </div>
