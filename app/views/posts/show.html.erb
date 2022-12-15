@@ -61,7 +61,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-4 d-none d-sm-inline">
+  <div class="col-sm-4 d-none d-sm-block">
     <div class="row">
       <div>
         <p class="mb-0 bg-white card-body">
@@ -72,8 +72,8 @@
             </p>
           </div>
           <div class="d-flex align-items-end card-body bg-white pt-0">
-            <p class="mb-0 h6 text-break">
-              <strong><small><%= @link.short.gsub("https://", "") %></small></small>
+            <p class="mb-0 text-break">
+              <strong><small><%= link_to @link.short.gsub("https://", ""), @link.short, class: "text-decoration-none" %></small></strong>
             </p>
           </div>
         </p>
