@@ -4,6 +4,9 @@ import "trix";
 import "@rails/actiontext";
 
 $(function () {
+  $(".dropdown-menu").click(function (e) {
+    e.stopPropagation();
+  });
   $(".vote").on("click", ".upvote, .downvote", function () {
     let post_id = $(this).parent().attr("data-id");
     let is_upvote = $(this).hasClass("upvote");
