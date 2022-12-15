@@ -57,7 +57,7 @@ class PostsController < ApplicationController
 
         @post.account_id = current_account.id
         @post.community_id = Community.find_by(slug: params[:community_id]).id
-        @post.slug = @post.title.downcase.tr_s(' ', '_').gsub("?", "").gsub("'", "").gsub("!", "") + "_" + SecureRandom.hex(4)
+        @post.slug = @post.title.downcase.tr_s(' ', '_').gsub(".","").gsub("?", "").gsub("'", "").gsub("!", "").gsub("__", "_").gsub("_-_", "_") + "_" + SecureRandom.hex(4)
         @community = Community.find_by(slug: params[:community_id])
         if @post.save
             link = Link.create(url: "https://reddit-clone-rails.herokuapp.com/communities/#{@post.community.url}/posts/#{@post.slug}")
