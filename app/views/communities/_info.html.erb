@@ -12,6 +12,11 @@
               <strong><%= @post.score %> <small>points </strong> (<%= @post.percentage_upvoted.truncate %>% upvoted)</small>
             </p>
           </div>
+          <div class="d-flex align-items-end card-body bg-white pt-0">
+            <p class="mb-0 h6 text-break">
+              <strong><small><%= @link.short.gsub("https://", "") %></small></small>
+            </p>
+          </div>
         </p>
       </li>
     <% end %>
@@ -20,7 +25,7 @@
     <% end %>
     <li class="dropdown-item">
       <div class="card p-3">
-        <div class="mb-2 h5">About</div>
+        <div class="mb-2 h5"><%= community.name %></div>
         <div class="text-wrap" ><%= community.summary %></div>
         <div class="mb-2"><%= pluralize @subscribers_count, "member" %> </div>
       </div>
