@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post '/subscriptions/:community_id', to: 'subscriptions#create'
 
   resources :comments, only: [:create, :destroy]
+  
+  get '/s/:slug', to: 'links#show'
 
   post '/posts/vote', to: 'votes#create' 
 
@@ -20,5 +22,6 @@ Rails.application.routes.draw do
   root to: 'posts#index', sort: "front_page"
   
   get '*path' => redirect('/')
+
 
 end
