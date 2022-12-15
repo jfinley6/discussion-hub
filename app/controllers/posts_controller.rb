@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     end
 
     def show 
-        @link = Link.find_by(url: request.original_url)
+        @link = Link.find_by(url: request.original_url) || Link.create(url: request.original_url)
         @comment = Comment.new
         @subscription = Subscription.new
         @is_subscribed = account_signed_in? ? Subscription.where(community_id: @post.community.id, account_id: current_account.id).any? : false
