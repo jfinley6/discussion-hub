@@ -1,6 +1,6 @@
 # Reddit Clone
 
-My first project utilizing Full Stack Rails. Built from the groundup with the intention of being a clone of popular link and text sharing website reddit. Features involve being able to sign up for an account, create and join different communities, vote and comment on posts as well as make your own posts. This project was designed in mind to be a constantly evolving website with new features added as I come up with them.
+My first project utilizing Full Stack Ruby on Rails. Built from the groundup with the intention of being a clone of popular link and text sharing website reddit. Features involve being able to sign up for an account, create and join different communities, vote and comment on posts as well as make your own posts. This project was designed in mind to be a constantly evolving website with new features added as I come up with them.
 
 * [Live Demo](https://reddit-clone-rails.herokuapp.com)
 
