@@ -1,8 +1,8 @@
-# Reddit Clone
+# DiscussionHub
 
 My first project utilizing Full Stack Ruby on Rails. Built from the ground up with the intention of being a clone of popular link and text sharing website reddit. Features involve being able to sign up for an account, create and join different communities, vote and comment on posts as well as make your own posts. This project was designed in mind to be a constantly evolving website with new features added as I come up with them.
 
-* [Live Demo](https://reddit-clone-rails.herokuapp.com) (Please be aware that it might take Heroku about 10 seconds to load up)
+* [Live Demo](https://discussionhub.herokuapp.com) (Please be aware that it might take Heroku about 10 seconds to load up)
 
 ## Built With
 

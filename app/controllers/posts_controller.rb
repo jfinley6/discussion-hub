@@ -60,7 +60,7 @@ class PostsController < ApplicationController
         @post.slug = @post.title.downcase.tr_s(' ', '_').gsub(".","").gsub("?", "").gsub("'", "").gsub("!", "").gsub("__", "_").gsub("_-_", "_") + "_" + SecureRandom.hex(4)
         @community = Community.find_by(slug: params[:community_id])
         if @post.save
-            link = Link.create(url: "https://reddit-clone-rails.herokuapp.com/communities/#{@post.community.url}/posts/#{@post.slug}")
+            link = Link.create(url: "https://discussionhub.herokuapp.com/communities/#{@post.community.url}/posts/#{@post.slug}")
             @vote = Vote.new
             @vote.account_id = current_account.id
             @vote.post_id = @post.id
