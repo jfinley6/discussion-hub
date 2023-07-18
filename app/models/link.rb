@@ -7,7 +7,7 @@ class Link < ActiveRecord::Base
     validates_length_of :slug, within: 3..255, on: :create, message: "too long"
 
     def short
-        "https://discussionhub.herokuapp.com/s/#{self.slug}"
+        "https://discussionhub-51a7c53ae2c9.herokuapp.com/s/#{self.slug}"
     end
 
     def generate_slug

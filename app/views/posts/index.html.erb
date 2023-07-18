@@ -1,9 +1,9 @@
 <% content_for :title do %>
-  <% if request.original_url == "https://discussionhub.herokuapp.com/new" %>
+  <% if request.original_url == "https://discussionhub-51a7c53ae2c9.herokuapp.com/new" %>
     newest submissions
-  <% elsif request.original_url == "https://discussionhub.herokuapp.com/" %>
+  <% elsif request.original_url == "https:///" %>
     discussionhub: the front page of the internet
-  <% elsif request.original_url == "https://discussionhub.herokuapp.com/top" %>
+  <% elsif request.original_url == "https://discussionhub-51a7c53ae2c9.herokuapp.com/top" %>
     top scoring links: all
   <% end %>
 <% end %>
